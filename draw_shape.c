@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_numlen.c                                        :+:      :+:    :+:   */
+/*   draw_shape.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppanchen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/18 14:55:00 by ppanchen          #+#    #+#             */
-/*   Updated: 2017/02/01 18:34:01 by ppanchen         ###   ########.fr       */
+/*   Created: 2017/03/11 19:03:16 by ppanchen          #+#    #+#             */
+/*   Updated: 2017/03/11 19:03:17 by ppanchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fdf.h"
 
-/*
-** return lenth of number without sign!!!
-*/
-
-int	ft_numlen(int in)
+void	draw_line(t_win win, int c1[], int c2[], int color)
 {
-	int i;
-	int	n;
+	int x1;
+	int y1;
+	int x2;
+	int y2;
 
-	i = 0;
-	n = M(in);
-	if (n / 10 == 0)
-		return (i + 1);
-	else
+	x1 = c1[0];
+	y1 = c1[1];
+	x2 = c2[0];
+	y2 = c2[1];
+
+	while (x1 <= x2 && y1 <= y2)
 	{
-		while (n > 0)
-		{
-			n = n / 10;
-			i++;
-		}
-		return (i);
+		mlx_pixel_put(win.mlx, win.win, x1, y1, color);
+		x1++;
+		y1++;
 	}
 }

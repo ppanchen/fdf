@@ -6,7 +6,7 @@
 /*   By: ppanchen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 19:14:44 by ppanchen          #+#    #+#             */
-/*   Updated: 2017/03/08 15:48:31 by ppanchen         ###   ########.fr       */
+/*   Updated: 2017/03/11 15:47:45 by ppanchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ int					ft_modul(int i);
 int					ft_numlen(int n);
 int					ft_pow(int num, int p);
 int					ft_printf(const char *format, ...);
-int					count_chars(char *str, char c);
+int					ft_count_chars(char *str, char c);
+int					ft_count_items(void **arr);
 
 #endif

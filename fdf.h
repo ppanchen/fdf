@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_numlen.c                                        :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppanchen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/18 14:55:00 by ppanchen          #+#    #+#             */
-/*   Updated: 2017/02/01 18:34:01 by ppanchen         ###   ########.fr       */
+/*   Created: 2017/03/10 14:23:03 by ppanchen          #+#    #+#             */
+/*   Updated: 2017/03/10 14:23:04 by ppanchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FDF_H
+# define FDF_H
+# include "mlx.h"
+# include "libft/libft.h"
+# include <fcntl.h>
+# include <string.h>
+# include <errno.h>
+# include <stdio.h>
 
-/*
-** return lenth of number without sign!!!
-*/
-
-int	ft_numlen(int in)
+typedef struct	s_win
 {
-	int i;
-	int	n;
+	void		*mlx;
+	void		*win;
+}				t_win;
 
-	i = 0;
-	n = M(in);
-	if (n / 10 == 0)
-		return (i + 1);
-	else
-	{
-		while (n > 0)
-		{
-			n = n / 10;
-			i++;
-		}
-		return (i);
-	}
-}
+char	*read_file(int fd);
+void	draw_map(int **map, char *name);
+int 	**valid_file(char	*file);
+void	draw_line(t_win win, int c1[], int c2[], int color);
+
+#endif
