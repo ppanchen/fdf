@@ -38,19 +38,19 @@ char	*read_file(int fd)
 	return (file);
 }
 
-int 	**creat_map(char **chmap, int y, int x)
+float 	**creat_map(char **chmap, int y, int x)
 {
-	int		**map;
+	float		**map;
 	char 	**str;
 	int 	i;
 	int 	j;
 	int 	r;
 
-	map = (int **)malloc(sizeof(int *) * (y + 1));
+	map = (float **)malloc(sizeof(float *) * (y + 1));
 	map[y] = 0;
 	i = -1;
 	while (++i < y)
-		map[i] = (int *)malloc(sizeof(int) * x);
+		map[i] = (float *)malloc(sizeof(float) * x);
 	i = -1;
 	r = 1;
 	while (chmap[++i] && (j = -1))
@@ -92,10 +92,10 @@ int 	valid_rect(char **chmap)
 	return (r == 0 ? r : size);
 }
 
-int 	**valid_file(char	*file)
+float 	**valid_file(char	*file, int *x, int *y)
 {
 	char 	**chmap;
-	int 	**map;
+	float 	**map;
 	int		size;
 
 	size = -1;
@@ -104,8 +104,9 @@ int 	**valid_file(char	*file)
 			&& file[size] != '+' && file[size] != ' ' && file[size] != '\n')
 			return (0);
 	chmap = ft_strsplit(file, '\n');
-	if ((size = valid_rect(chmap)) != 0)
-		map = creat_map(chmap, ft_count_items((void *)chmap), size);
+	*y = ft_count_items((void *)chmap);
+	if ((*x = valid_rect(chmap)) != 0)
+		map = creat_map(chmap, *y, *x);
 	else
 		map = 0;
 	ft_arrdel(&chmap);
@@ -113,8 +114,8 @@ int 	**valid_file(char	*file)
 	while (map[++i])
 	{
 		int j = -1;
-		while (++j < size)
-			ft_printf("%3d ", map[i][j]);
+		while (++j < *x)
+			printf("%3.0f ", map[i][j]);
 		ft_printf("\n");
 	}
 	return (map);

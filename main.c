@@ -34,7 +34,9 @@ int		valid_file_name(char *filename)
 int		main(int ac, char *av[])
 {
 	char 	*file;
-	int 	**map;
+	float 	**map;
+	int 	x;
+	int 	y;
 
 	if (ac != 2)
 		return (0);
@@ -45,7 +47,7 @@ int		main(int ac, char *av[])
 	}
 	file = read_file(open(av[1], O_RDONLY));
 	ft_printf("%s", file);
-	if ((map = valid_file(file)) != 0)
-		draw_map(map, av[1]);
+	if ((map = valid_file(file, &x, &y)) != 0)
+		draw_map(map, av[1], x, y);
 	return (0);
 }

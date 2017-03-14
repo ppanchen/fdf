@@ -101,6 +101,6 @@ set(SOURCE_FILES
     libft/libft.h
     fdf.h
     mlx.h
-    main.c read_valid.c draw_map.c draw_shape.c)
+    main.c read_valid.c draw_map.c draw_shape.c key_event.c)
 
 add_executable(fdf ${SOURCE_FILES})

@@ -12,22 +12,30 @@
 
 #include "fdf.h"
 
-void	draw_line(t_win win, int c1[], int c2[], int color)
+void	swap_arr(float **c1, float **c2)
 {
-	int x1;
-	int y1;
-	int x2;
-	int y2;
+	float  *c3;
+	c3 = *c2;
+	*c2 = *c1;
+	*c1 = c3;
+}
 
-	x1 = c1[0];
-	y1 = c1[1];
-	x2 = c2[0];
-	y2 = c2[1];
+void	draw_line(t_win win, float c1[], float c2[], int color)
+{
+	float dx;
+	float dy;
+	float x;
+	float y;
 
-	while (x1 <= x2 && y1 <= y2)
+	if (c1[0] > c2[0])
+		swap_arr(&c1, &c2);
+	dx = c2[0] - c1[0];
+	dy = c2[1] - c1[1];
+	x = c1[0];
+	while (x <= c2[0])
 	{
-		mlx_pixel_put(win.mlx, win.win, x1, y1, color);
-		x1++;
-		y1++;
+		y = c1[1] + dy * (x - c1[0]) / dx;
+		mlx_pixel_put(win.mlx, win.win, (int)x, (int)y, color);
+		x += 0.1;
 	}
 }

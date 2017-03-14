@@ -18,16 +18,31 @@
 # include <string.h>
 # include <errno.h>
 # include <stdio.h>
+# include <math.h>
 
-typedef struct	s_win
+typedef struct		s_coord
 {
-	void		*mlx;
-	void		*win;
-}				t_win;
+	float 			x;
+	float			y;
+	float 			z;
+//	struct s_coord	*right;
+//	struct s_coord	*down;
+}					t_coord;
+
+typedef struct		s_win
+{
+	void			*mlx;
+	void			*win;
+	t_coord			**coord;
+	int 			scale;
+	int 			len;
+}					t_win;
 
 char	*read_file(int fd);
-void	draw_map(int **map, char *name);
-int 	**valid_file(char	*file);
-void	draw_line(t_win win, int c1[], int c2[], int color);
-
+void	draw_map(float **map, char *name, int x, int y);
+float 	**valid_file(char	*file, int *x, int *y);
+void	draw_line(t_win win, float c1[], float c2[], int color);
+void	x_rotate(t_coord **coor, float angel, int x);
+void	y_rotate(t_coord **coor, float angel, int x);
+void	z_rotate(t_coord **coor, float angel, int x);
 #endif
