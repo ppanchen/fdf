@@ -35,6 +35,7 @@ typedef struct		s_win
 	int				scale;
 	int				len;
 	int				center[2];
+	int 			color;
 }					t_win;
 
 char				*read_file(int fd);

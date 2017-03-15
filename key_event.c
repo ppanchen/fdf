@@ -26,6 +26,18 @@ void	key_event4(int keycode, t_win *win)
 		win->center[1] -= 10;
 		draw_coord(*win);
 	}
+	if (keycode == 15)
+	{
+		mlx_clear_window(win->mlx, win->win);
+		win->color = 0xFF0000;
+		draw_coord(*win);
+	}
+	if (keycode == 5)
+	{
+		mlx_clear_window(win->mlx, win->win);
+		win->color = 0x00FF00;
+		draw_coord(*win);
+	}
 }
 
 void	key_event3(int keycode, t_win *win)
@@ -46,6 +58,12 @@ void	key_event3(int keycode, t_win *win)
 	{
 		mlx_clear_window(win->mlx, win->win);
 		win->center[0] -= 10;
+		draw_coord(*win);
+	}
+	if (keycode == 11)
+	{
+		mlx_clear_window(win->mlx, win->win);
+		win->color = 0x00FFFF;
 		draw_coord(*win);
 	}
 	key_event4(keycode, win);

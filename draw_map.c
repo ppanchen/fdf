@@ -56,7 +56,7 @@ void	draw_coord3(t_win win, int i, int j)
 		win.coord[i + 1][j].y) * win.scale + win.center[0];
 		c2[1] = ((float)0.5 * win.coord[i + 1][j].y -\
 		win.coord[i + 1][j].z) * win.scale + win.center[1];
-		draw_line(win, c1, c2, 0xFFFAFA);
+		draw_line(win, c1, c2, win.color);
 	}
 }
 
@@ -76,7 +76,7 @@ void	draw_coord2(t_win win, int i, int j)
 		win.coord[i][j + 1].y) * win.scale + win.center[0];
 		c2[1] = ((float)0.5 * win.coord[i][j + 1].y -\
 		win.coord[i][j + 1].z) * win.scale + win.center[1];
-		draw_line(win, c1, c2, 0xFFFAFA);
+		draw_line(win, c1, c2, win.color);
 	}
 	draw_coord3(win, i, j);
 }
@@ -100,12 +100,12 @@ void	draw_coord(t_win win)
 			win.coord[i][j + 1].y) * win.scale + win.center[0];
 			c2[1] = ((float)0.5 * win.coord[i][j + 1].y -\
 			win.coord[i][j + 1].z) * win.scale + win.center[1];
-			draw_line(win, c1, c2, 0xFFFAFA);
+			draw_line(win, c1, c2, win.color);
 			c2[0] = (win.coord[i + 1][j].x - (float)0.5 *\
 			win.coord[i + 1][j].y) * win.scale + win.center[0];
 			c2[1] = ((float)0.5 * win.coord[i + 1][j].y -\
 			win.coord[i + 1][j].z) * win.scale + win.center[1];
-			draw_line(win, c1, c2, 0xFFFAFA);
+			draw_line(win, c1, c2, win.color);
 		}
 	draw_coord2(win, i, j);
 }
@@ -126,6 +126,7 @@ void	draw_map(float **map, char *name, int x, int y)
 	win->scale = 10;
 	win->center[0] = 1000;
 	win->center[1] = 500;
+	win->color = 0xFFFAFA;
 	draw_coord(*win);
 	mlx_hook(win->win, 2, 5, key_event, win);
 	mlx_loop(win->mlx);
