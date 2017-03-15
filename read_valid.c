@@ -15,8 +15,8 @@
 char	*read_file(int fd)
 {
 	char	*file;
-	char 	*tmp;
-	char 	*n;
+	char	*tmp;
+	char	*n;
 
 	if (fd == -1)
 	{
@@ -38,19 +38,28 @@ char	*read_file(int fd)
 	return (file);
 }
 
-float 	**creat_map(char **chmap, int y, int x)
+float	**mem_map(int x, int y)
 {
-	float		**map;
-	char 	**str;
-	int 	i;
-	int 	j;
-	int 	r;
+	float	**map;
+	int		i;
 
 	map = (float **)malloc(sizeof(float *) * (y + 1));
 	map[y] = 0;
 	i = -1;
 	while (++i < y)
 		map[i] = (float *)malloc(sizeof(float) * x);
+	return (map);
+}
+
+float	**creat_map(char **chmap, int y, int x)
+{
+	float	**map;
+	char	**str;
+	int		i;
+	int		j;
+	int		r;
+
+	map = mem_map(x, y);
 	i = -1;
 	r = 1;
 	while (chmap[++i] && (j = -1))
@@ -58,7 +67,8 @@ float 	**creat_map(char **chmap, int y, int x)
 		str = ft_strsplit(chmap[i], ' ');
 		while (str[++j])
 		{
-			if (ft_strlen(str[j]) != (str[j][0] == '+' || str[j][0] == '-'?
+			if ((int)ft_strlen(str[j]) != (str[j][0] == '+' ||
+												str[j][0] == '-' ?
 				ft_numlen(ft_atoi(str[j])) + 1 : ft_numlen(ft_atoi(str[j]))))
 				r = 0;
 			map[i][j] = ft_atoi(str[j]);
@@ -70,12 +80,12 @@ float 	**creat_map(char **chmap, int y, int x)
 	return (map);
 }
 
-int 	valid_rect(char **chmap)
+int		valid_rect(char **chmap)
 {
 	int		r;
-	int 	i;
+	int		i;
 	char	**onestr;
-	int 	size;
+	int		size;
 
 	i = 0;
 	r = 1;
@@ -92,10 +102,10 @@ int 	valid_rect(char **chmap)
 	return (r == 0 ? r : size);
 }
 
-float 	**valid_file(char	*file, int *x, int *y)
+float	**valid_file(char *file, int *x, int *y)
 {
-	char 	**chmap;
-	float 	**map;
+	char	**chmap;
+	float	**map;
 	int		size;
 
 	size = -1;
@@ -110,13 +120,5 @@ float 	**valid_file(char	*file, int *x, int *y)
 	else
 		map = 0;
 	ft_arrdel(&chmap);
-	int i = -1;
-	while (map[++i])
-	{
-		int j = -1;
-		while (++j < *x)
-			printf("%3.0f ", map[i][j]);
-		ft_printf("\n");
-	}
 	return (map);
 }

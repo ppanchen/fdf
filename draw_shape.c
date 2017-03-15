@@ -14,7 +14,8 @@
 
 void	swap_arr(float **c1, float **c2)
 {
-	float  *c3;
+	float	*c3;
+
 	c3 = *c2;
 	*c2 = *c1;
 	*c1 = c3;
@@ -38,4 +39,58 @@ void	draw_line(t_win win, float c1[], float c2[], int color)
 		mlx_pixel_put(win.mlx, win.win, (int)x, (int)y, color);
 		x += 0.1;
 	}
+}
+
+void	x_rotate(t_coord **coor, float angel, int x)
+{
+	int		i;
+	int		j;
+	float	y;
+	float	z;
+
+	i = -1;
+	while (coor[++i] && (j = -1))
+		while (++j < x)
+		{
+			y = coor[i][j].y;
+			z = coor[i][j].z;
+			coor[i][j].y = y * cosf(angel) + z * sinf(angel);
+			coor[i][j].z = -y * sinf(angel) + z * cosf(angel);
+		}
+}
+
+void	y_rotate(t_coord **coor, float angel, int len)
+{
+	int		i;
+	int		j;
+	float	x;
+	float	z;
+
+	i = -1;
+	while (coor[++i] && (j = -1))
+		while (++j < len)
+		{
+			x = coor[i][j].x;
+			z = coor[i][j].z;
+			coor[i][j].x = x * cosf(angel) + z * sinf(angel);
+			coor[i][j].z = -x * sinf(angel) + z * cosf(angel);
+		}
+}
+
+void	z_rotate(t_coord **coor, float angel, int len)
+{
+	int		i;
+	int		j;
+	float	x;
+	float	y;
+
+	i = -1;
+	while (coor[++i] && (j = -1))
+		while (++j < len)
+		{
+			y = coor[i][j].y;
+			x = coor[i][j].x;
+			coor[i][j].x = x * cosf(angel) + y * sinf(angel);
+			coor[i][j].y = -x * sinf(angel) + y * cosf(angel);
+		}
 }

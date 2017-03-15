@@ -16,7 +16,7 @@ int		valid_file_name(char *filename)
 {
 	int		i;
 	char	**part;
-	int 	r;
+	int		r;
 
 	part = ft_strsplit(filename, '.');
 	i = 0;
@@ -33,10 +33,10 @@ int		valid_file_name(char *filename)
 
 int		main(int ac, char *av[])
 {
-	char 	*file;
-	float 	**map;
-	int 	x;
-	int 	y;
+	char	*file;
+	float	**map;
+	int		x;
+	int		y;
 
 	if (ac != 2)
 		return (0);

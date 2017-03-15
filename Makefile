@@ -1,10 +1,10 @@
-NAME = mlx
+NAME = fdf
 
 CFLAGS = -Wall -Wextra -Werror
 
 INCLUDES = .
 
-SRCS = main.c
+SRCS = main.c draw_map.c draw_shape.c key_event.c read_valid.c
 
 OBJ = $(SRCS:.c=.o)
 
